@@ -1,0 +1,144 @@
+2014-05-20 Tim Martin <Tim.Martin@cern.ch>
+	* Add some additional maps for algorithm name hash and algorithm name type has.
+	* Tagging as TrigRootAnalysis-00-01-07
+
+2014-02-03 Tim Martin <Tim.Martin@cern.ch>
+  * Add ability (in the RootCore side of things) to parse extended menu
+    configuration information added by Trig Cost Monitoring.
+  * Designed in mind for use in conjunction with TrigCostRootAnalysis package.
+  * Access to trigger chains, signatures, sequences, algorithms.
+  * Tagging as TrigRootAnalysis-00-01-06
+
+2012-08-24 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Fixed a long-standing problem. VarHandle now explicitly
+	  turns off the "MakeClass status" of the input TTree, as
+	  this clashes with the way VarHandle accesses the branches.
+	* Tagging as TrigRootAnalysis-00-01-05
+
+2012-07-24 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Under certain circumstances ROOT may not find a dictionary
+	  for std::vector<short>, which is needed to read the HLT
+	  trigger decision. So, I explicitly added this dictionary
+	  to the package. Hopefully it won't clash with the
+	  built-in dictionary too much. (In the cases where it
+	  wouldn't be needed...)
+	* Tagging TrigRootAnalysis-00-01-04
+
+2012-07-24 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Fixed the "visibility setting" of the BranchAvailability
+	  enumeration in VarHandleBase. This fixes the compilation
+	  using clang. (GCC doesn't pick up on this bug...)
+	* Tagging as TrigRootAnalysis-00-01-03
+
+2012-06-22 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Added the latest VarHandle implementation to the package
+	  from the D3PDReader code generator. (With the statistics
+	  collection stripped off.)
+	* This was needed to fix some small memory leaks that were
+	  present in the previous implementation.
+	* Tagging as TrigRootAnalysis-00-01-02
+
+2012-05-29 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Making it possible in the new code as well to update the
+	  trigger configuration metadata tree used by the stand-alone
+	  TDT object.
+	* Tagging as TrigRootAnalysis-00-01-01
+
+2012-05-25 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Made a *lot* of changes.
+	* Modified the base classes of TrigDecisionToolD3PD not to
+	  depend directly on TrigConfigSvcD3PD, but only on the
+	  IITrigConfigSvcD3PD interface.
+	* Introduced the IITrigDecisionToolD3PD and
+	  ITrigDecisionToolD3PD interfaces.
+	* Created the TrigDecisionToolAthD3PD implementation to be
+	  used in Athena D3PD analyses.
+	* Only tested the code in Athena and PyROOT so far, could
+	  possibly still have issues in standalone ROOT mode.
+	* Tagging as TrigRootAnalysis-00-01-00
+
+2012-05-24 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Started a large scale rewrite.
+	* TrigConfigSvcD3PD no longer needs constant access to the
+	  metadata tree, it now reads in all data when the TTree
+	  is given to it, and then releases it.
+	* Created some interfaces for the trigger configuration
+	  service.
+	* Added an Athena service to the package, which wraps
+	  D3PD::TrigConfigSvcD3PD, and provides the configuration
+	  data for the current event in an Athena environment.
+	* Not tagging for the moment, as other big updates will
+	  follow in the TDT code.
+
+2012-04-22 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Playing a bit with C++11. Added some nice optimizations in
+	  TrigDecisionToolD3PD.cxx that depend on the new language
+	  features.
+	* Extended Makefile.standalone to make it possible to compile
+	  the package in the C++0x mode of GCC or Clang.
+	* When not in C++11 mode, the compiler gets the same code
+	  as before.
+	* Tagging as TrigRootAnalysis-00-00-09
+
+2012-02-24 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Extended Makefile.standalone to play nicely with
+	  ROOT 5.32
+	* Tagging as TrigRootAnalysis-00-00-08
+
+2011-12-01 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Updated ChainGroupHandling so that it wouldn't print an
+	  error message when somebody creates a ChainGroup before
+	  the first file is opened.
+	* Tagging as TrigRootAnalysis-00-00-07
+
+2011-11-25 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Using functions on a ChainGroup now makes sure that
+	  the correct configuration is loaded when the ChainGroup
+	  functions are evaluated. (Prescales could be wrong in
+	  the past...)
+	* Tagging as TrigRootAnalysis-00-00-06
+
+2011-11-21 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Added a parameter to GetConfigSvc(...) which can disable the
+	  auto-loading of the configuration for the current event.
+	  (When you define a new configuration tree after you opened
+	  a new file, you don't want the tool trying to access a
+	  non-existent tree in memory.)
+	* Made the functions in IDataAccess public, as these can be
+	  useful in many situations. (One couldn't use the enumeration
+	  defined in this class before this.)
+	* Tagging as TrigRootAnalysis-00-00-05
+
+2011-11-21 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Changed the code such that when the user calls the
+	  GetConfigSvc() function on the TDT, it would always be
+	  ensured to be in the correct state for the current
+	  event. (So far the higher level functions made sure
+	  one by one that the correct configuration is loaded.)
+	* Added some documentation for Doxygen.
+	* Tagging as TrigRootAnalysis-00-00-04
+
+2011-10-31 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Added a new suite of functions for listing all the triggers
+	  from an event, or from a chain group that passed in the
+	  current event. This should help in some interactive
+	  analyses, or analyses running on just a few events.
+	* TrigConfigSvcD3PD can now look up LVL1 items and HLT chains
+	  based on their CTP/Chain Id.
+	* Added some extra protection against failures in some places.
+	* Tagging as TrigRootAnalysis-00-00-03
+
+2011-09-28 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Small fix for RootCore compilation on MacOS X Lion.
+	  (libTree is somehow not loaded by default under ROOT
+	  5.30.01 there...)
+	* Tagging as TrigRootAnalysis-00-00-02
+
+2011-09-05 Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+	* Created this new package based on the ROOT-only sources
+	  that were in the TriggerD3PDMaker package so far.
+	* The code can be compiled in 3 ways at the moment:
+	  - In the Athena environment like any other CMT package
+	  - Using RootCore
+	  - Using a completely standalone Makefile
+	* Tagging as TrigRootAnalysis-00-00-01

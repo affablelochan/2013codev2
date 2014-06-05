@@ -1,0 +1,33 @@
+package TrigRootAnalysis
+author Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+
+# Base Gaudi/Athena package(s):
+use AtlasPolicy     AtlasPolicy-*
+use GaudiInterface  GaudiInterface-*  External
+
+# External package(s):
+use AtlasROOT       AtlasROOT-*       External
+
+# Athena package(s):
+use AthenaBaseComps AthenaBaseComps-* Control
+use AthenaKernel    AthenaKernel-*    Control
+use StoreGate       StoreGate-*       Control
+
+# Compile the code into a dual use library:
+apply_pattern dual_use_library files="../Root/*.cxx *.cxx"
+
+# Generate the CINT dictionaries for the classes:
+apply_pattern have_root_headers root_headers="IDataAccess.h \
+                                              IConfigAccess.h \
+                                              IITrigConfigSvcD3PD.h \
+                                              IITrigDecisionToolD3PD.h \
+                                              TrigConfigSvcD3PD.h \
+                                              DataAccess.h \
+                                              ConfigAccess.h \
+                                              ChainGroupHandling.h \
+                                              TrigDecisionFunctions.h \
+                                              TrigDecisionToolD3PD.h \
+                                              PyTrigDecisionToolD3PD.h \
+                                              ChainGroup.h \
+                                              ../Root/LinkDef.h" \
+              headers_lib=TrigRootAnalysisLib

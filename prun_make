@@ -1,0 +1,66 @@
+external files
+
+data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml
+libTrigRootAnalysis.so
+libGoodRunsLists.so
+ApplyJetCalibration-00-03-02/StandAlone/libApplyJetCalibration.so
+ApplyJetCalibration-00-03-02/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config
+
+
+prun output:
+............
+filename: -o fat_jet.root 
+athena  17.2.4
+
+
+
+Input option options
+
+data:  
+
+-i   input files
+
+
+mc
+..
+
+-i 
+-m   to turn on MC mode
+-p    tun on pileup cut 
+
+
+
+
+local testing:
+..............
+
+python David_2013.py -m -p -n 2000 -i /hdfs/users/rsu004/d3pd/mc12_8TeV.147911.Pythia8_AU2CT10_jetjet_JZ1W.merge.NTUP_SMQCD.e1126_s1469_s1470_r3542_r3549_p1344_tid01133576_00/NTUP_SMQCD.01133576._000015.root 
+
+
+
+
+
+
+
+
+data:-
+....
+
+testing single run:
+..................
+prun --exec 'python David_2013.py -i %IN'  --inDS data12_8TeV.00212619.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/ --outDS group.trig-daq.2012_fattrig_Test1 --outputs fat_jet.root --athenaTag=17.2.4 --noBuild --extFile data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml,libTrigRootAnalysis.so,libGoodRunsLists.so,ApplyJetCalibration-00-03-02/StandAlone/libApplyJetCalibration.so,ApplyJetCalibration-00-03-02/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config,ApplyJetCalibration-00-03-02/data/InsituCalibration/InsituCalibration_Dec21_2012.root --nFilesPerJob=1 --official --voms atlas:/atlas/trig-daq/Role=production 
+
+entire period H running
+.......................
+
+prun --exec 'python David_2013.py -i %IN'  --inDS data12_8TeV.00212619.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212663.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212687.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212721.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212742.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212809.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212815.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212858.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212967.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00212993.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213039.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213079.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213092.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213130.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213155.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213157.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213204.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213250.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213314.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/,data12_8TeV.00213359.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/ --outDS group.trig-daq.2012_fattrig_periodH --outputs fat_jet.root --athenaTag=17.2.4 --noBuild --extFile data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml,libTrigRootAnalysis.so,libGoodRunsLists.so,ApplyJetCalibration-00-03-02/StandAlone/libApplyJetCalibration.so,ApplyJetCalibration-00-03-02/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config,ApplyJetCalibration-00-03-02/data/InsituCalibration/InsituCalibration_Dec21_2012.root --nFilesPerJob=1 --official --voms atlas:/atlas/trig-daq/Role=production 
+
+
+
+mc 12 d3pd
+............
+prun --exec 'python David_2013.py -i %IN -m -p' --inDS mc12_8TeV.147910.Pythia8_AU2CT10_jetjet_JZ0W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147911.Pythia8_AU2CT10_jetjet_JZ1W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147912.Pythia8_AU2CT10_jetjet_JZ2W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147913.Pythia8_AU2CT10_jetjet_JZ3W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147914.Pythia8_AU2CT10_jetjet_JZ4W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147915.Pythia8_AU2CT10_jetjet_JZ5W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147916.Pythia8_AU2CT10_jetjet_JZ6W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/,mc12_8TeV.147917.Pythia8_AU2CT10_jetjet_JZ7W.merge.NTUP_JETMET.e1126_s1469_s1470_r3542_r3549_p1344/ --outDS group.trig-daq.2012_fattrig_pythiamc12 --outputs fat_jet.root --athenaTag=17.2.4 --noBuild --extFile data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml,libTrigRootAnalysis.so,libGoodRunsLists.so,ApplyJetCalibration-00-03-02/StandAlone/libApplyJetCalibration.so,ApplyJetCalibration-00-03-02/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config,ApplyJetCalibration-00-03-02/data/InsituCalibration/InsituCalibration_Dec21_2012.root --nFilesPerJob=1 --official --voms atlas:/atlas/trig-daq/Role=production 
+
+
+
+prun --exec 'python rajiv.py -i %IN -m -p' --inDS mc12_8TeV.117049.TTbar_MT1725_allhad_PowHeg_Pythia_P2011C.merge.NTUP_COMMON.e2075_s1581_s1586_r3658_r3549_p1575/ --outDS group.trig-daq.2012_ttbar_pythiamc12 --outputs ttbarsample.root --athenaTag=17.2.4 --noBuild --extFile data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml,libTrigRootAnalysis.so,libGoodRunsLists.so,ApplyJetCalibration-00-03-02/StandAlone/libApplyJetCalibration.so,ApplyJetCalibration-00-03-02/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config,ApplyJetCalibration-00-03-02/data/InsituCalibration/InsituCalibration_Dec21_2012.root --nFilesPerJob=1 --official --voms atlas:/atlas/trig-daq/Role=production

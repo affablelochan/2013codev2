@@ -1,0 +1,12 @@
+
+
+localSetupROOT --rootVersion=5.34.14-x86_64-slc5-gcc4.3
+python rajiv.py -n 200 -i /hdfs/projects/atlas/2012_d3pd/data12_8TeV.00212619.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345_tid01136320_00/NTUP_SMQCD.01136320._000001.root.1
+
+
+to run over grid:
+
+prun --exec 'python rajiv.py -o debo.root -i %IN'  --inDS data12_8TeV.00212619.physics_JetTauEtmiss.merge.NTUP_SMQCD.r4065_p1278_p1344_p1345/ 
+--outDS user.subraman.data12_8TeV.00212619.physics_JetTauEtmiss.merge.05_29_2014 
+--outputs debo.root --extFile data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml,libTrigRootAnalysis.so,libGoodRunsLists.so,ApplyJetCalibration-00-03-03/StandAlone/libApplyJetCalibration.so,ApplyJetCalibration-00-03-03/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config,ApplyJetCalibration-00-03-03/data/InsituCalibration/InsituCalibration_Dec21_2012.root 
+--nFilesPerJob=1 --rootVer==5.34.14-x86_64-slc5-gcc4.3

@@ -1,0 +1,64 @@
+
+I didn't mention it yesterday but in fact I've already transferred all available files to tech. You can find them in:
+
+/work/tamsett/data/qcd_d4pds/v4_A-L
+
+If you could copy them to hdfs that would be useful. This folder should contain all the data in the the central GRL in the JetTauEtmiss stream except for 4 runs where the NTUPs are 
+still not available:
+
+data12_8TeV.00201556.physics_JetTauEtmiss.merge.NTUP_JETMET.r4065_p1278_p1344/
+data12_8TeV.00205016.physics_JetTauEtmiss.merge.NTUP_JETMET.r4065_p1278_p1344/
+data12_8TeV.00208261.physics_JetTauEtmiss.merge.NTUP_JETMET.r4065_p1278_p1344/
+data12_8TeV.00213250.physics_JetTauEtmiss.merge.NTUP_JETMET.r4065_p1278_p1344/
+
+It also includes the debug hltacc stream files. Also you can find the pythia JZXW and herwig JZXW files. I'll also add the skimmer version used into the directory for reference. The 
+jets in these are LCTopo EM+JES, calibrated using the new area based corrections (ApplyJetCalibration-00-03-02). Events with LAr, Tile or TTC errors have been removed. Only events 
+which pass one of:
+
+EF_rd0_filled_NoAlg
+EF_j15_a4tchad
+EF_j25_a4tchad
+EF_j35_a4tchad
+EF_j45_a4tchad
+EF_j55_a4tchad
+EF_j80_a4tchad
+EF_j110_a4tchad
+EF_j145_a4tchad
+EF_j180_a4tchad
+EF_j220_a4tchad
+EF_j280_a4tchad
+EF_j360_a4tchad
+EF_j460_a4tchad
+EF_j170_a4tchad_ht600
+EF_j170_a4tchad_ht700
+EF_3j170_a4tchad_L1J75
+
+Changes w.r.t. the previous version: inclusion of jet_raw_eta, this is the const/EM scale (detector) jet eta and is needed for the JES uncertainties. The trigger objects have been 
+removed and replaced with a branch triggers_emulated which is a vector of strings of the triggers I think should have passed. You can find more details on the emulation code in 
+TriggerEmulator.py. Only those triggers in the triggers list are emulated (Skimmer_2013.py line 108). If you wanted to reproduce these files you should first prepare a list of dpds:
+
+data:
+        dq2-ls "data12_8TeV.*.physics_JetTauEtmiss.merge.NTUP_SMQCD.*p1344/" | sort | tee data12_NTUP_SMQCD_p1344.txt
+or
+        dq2-ls "data12_8TeV.*.physics_JetTauEtmiss.merge.NTUP_JETMET.*p1344/" | sort | tee data12_NTUP_JETMET_p1344.txt
+
+then call the launch_prun_jobs.py script in the skims directory (you'd have to edit the file to change the output dataset name) as:
+
+        python launch_prun_jobs.py -f data12_NTUP_SMQCD_p1344.txt -d data_LC_SMQCD -s
+
+similarly for pythia:
+
+        dq2-ls "mc12_8TeV.14791*.Pythia8_AU2CT10_jetjet_JZ*W.*NTUP_SMQCD.*e1126_s1469_s1470_r3542_r3549_p1344/" | sort | tee mc12_NTUP_SMQCD_pythia_JZXW_p1344.txt
+        python launch_prun_jobs.py -f mc12_NTUP_SMQCD_pythia_JZXW_p1344.txt -d JZXW_LC_SMQCD -s
+
+herwig:
+        dq2-ls "mc12*Herwigpp_EE3CTEQ6L1*NTUP_JETMET.*p1344/" | sort | tee mc12_NTUP_JETMET_herwig_JZXW_p1344.txt
+        python launch_prun_jobs.py -f mc12_NTUP_JETMET_herwig_JZXW_p1344.txt -d HERWIG_LC -s
+
+
+Let me know if there is anything else you want to know.
+
+Cheers,
+
+Matthew
+

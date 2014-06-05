@@ -1,0 +1,83 @@
+10
+
+dir
+534237
+svn+ssh://svn.cern.ch/reps/atlasoff/Reconstruction/Jet/ApplyJetCalibration/tags/ApplyJetCalibration-00-03-02
+svn+ssh://svn.cern.ch/reps/atlasoff
+
+
+
+2013-01-20T16:02:49.150722Z
+533897
+jkinghor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4525493e-7705-40b1-a816-d608a930855b
+
+ApplyJetCalibration
+dir
+
+Root
+dir
+
+cmt
+dir
+
+macros
+dir
+
+doc
+dir
+
+Changelog
+file
+
+
+
+
+2013-01-22T08:27:36.000000Z
+05a5d4f6f181f3ac6e03857d0bf42cb7
+2013-01-20T15:57:30.705329Z
+533896
+jkinghor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9205
+
+StandAlone
+dir
+
+data
+dir
+

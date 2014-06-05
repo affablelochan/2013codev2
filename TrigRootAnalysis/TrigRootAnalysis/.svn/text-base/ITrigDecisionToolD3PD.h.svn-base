@@ -1,0 +1,42 @@
+// Dear emacs, this is -*- c++ -*-
+// $Id$
+#ifndef TRIGROOTANALYSIS_ITRIGDECISIONTOOLD3PD_H
+#define TRIGROOTANALYSIS_ITRIGDECISIONTOOLD3PD_H
+
+// Gaudi/Athena include(s):
+#include "GaudiKernel/IAlgTool.h"
+
+// Local include(s):
+#include "IITrigDecisionToolD3PD.h"
+
+namespace D3PD {
+
+   /// The interface provided by ITrigConfigSvcD3PD
+   static const InterfaceID
+   IID_ITrigDecisionToolD3PD( "D3PD::ITrigDecisionToolD3PD", 1, 0 );
+
+   /**
+    *  @short Interface for the D3PD-based trigger decision tool
+    *
+    *         This interface can be used in an Athena-based D3PD analysis to
+    *         access the TDT.
+    *
+    * @author Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+    *
+    * $Revision$
+    * $Date$
+    */
+   class ITrigDecisionToolD3PD : public virtual IAlgTool,
+                                 public virtual IITrigDecisionToolD3PD {
+
+   public:
+      /// Gaudi interface definition
+      static const InterfaceID& interfaceID() {
+         return IID_ITrigDecisionToolD3PD;
+      }
+
+   }; // class ITrigDecisionToolD3PD
+
+} // namespace D3PD
+
+#endif // TRIGROOTANALYSIS_ITRIGDECISIONTOOLD3PD_H
